@@ -19,12 +19,15 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitStatus('Sending...');
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
       setSubmitStatus('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setSubmitStatus(''), 5000);
     } catch (error) {
       setSubmitStatus('Error sending message. Please try again.');
+      setTimeout(() => setSubmitStatus(''), 5000);
     }
   };
 
